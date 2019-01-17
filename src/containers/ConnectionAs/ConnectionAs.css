@@ -1,0 +1,16 @@
+.ConnectionAs {
+    width: 100%;
+    margin: auto;
+}
+
+.Button-Group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 600px) {
+    .ConnectionAs {
+        width: 70%;
+        margin: auto;
+    }
+}

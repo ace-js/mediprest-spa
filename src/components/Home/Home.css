@@ -1,0 +1,52 @@
+.Home {
+    display: grid;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas: ". . ." ". img ." ". . .";
+}
+
+.Home img {
+    width: 100%;
+    grid-area: img;
+    justify-self: center;
+    align-self: center;
+}
+
+@media (min-width: 600px) {
+    .Home {
+        width: 60%;
+        height: 50%;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .Home img {
+        width: 80%;
+    }
+}
+
+@media (min-width: 980px) {
+    .Home img {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .Home {
+        width: 40%;
+        height: 40%;
+    }
+    @media (min-height: 1000px) {
+        .Home {
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -70%);
+        }
+    }
+}

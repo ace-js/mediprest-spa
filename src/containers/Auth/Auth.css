@@ -1,0 +1,43 @@
+.Auth {
+    overflow-y: scroll;
+    position: absolute;
+    height: 70%;
+    width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%) ;
+}
+
+.Auth form {
+    margin-top: 20px;
+    height: 60%;
+}
+.Auth h2{
+    color: #2C98F0;
+}
+.Auth hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 1em 0;
+    padding: 0;
+}
+
+@media (min-width : 800px){
+    .Auth{
+        height : 50%;
+        width: 50%;
+    }
+}
+
+@media (max-height: 600px) {
+   .Auth{
+       transform: translateY(-45%) translateX(-50%) ;
+   }
+}
