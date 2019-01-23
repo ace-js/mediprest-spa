@@ -16,7 +16,8 @@ const messagesReducer = (state = initialState, action) => {
     case actions.MESSAGES_FETCH_UNREAD_AMOUNT_SUCCESS:
       cloneState.unreadAmount = action.payload.data.amount
       break
-
+    case actions.MESSAGES_FETCH_MESSAGES_SUCCESS:
+     cloneState.messages = action.payload.data.messages
     default:
       break
   }

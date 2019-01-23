@@ -77,5 +77,7 @@ export {
 
 export {
   fetchUnreadAmount,
-  fetchUnreadAmountSuccess
+  fetchUnreadAmountSuccess,
+  fetchMessages,
+  fetchMessagesSuccess
  } from './messages'

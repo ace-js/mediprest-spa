@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { get, isEmpty } from 'lodash'
 
 import {
   Container,
@@ -8,16 +9,46 @@ import {
   Block
 } from './../../components/UI/Layout'
 import { H2 } from './../../components/UI/Text'
-import MessageItem from './components/MessageItem';
+import MessageItem from './components/MessageItem'
+import { fetchMessages } from './../../store/actions'
+import ChatBox from './components/Chatbox';
 
 class Messages extends Component {
-  componentDidMount = () => {}
+  state = {
+    activeMessage: {}
+  }
+  componentDidMount = () => {
+    const {collabId, fetchMessages} = this.props
+    fetchMessages(collabId)
+  }
 
   onSelectHandler = (id) => {
-    console.log('on select ' , id)
+    const index = this.props.messages.findIndex(message => message.id === id)
+    //si dernier message === unread et recipient === colab mark as read
+    this.setState({activeMessage: {...this.props.messages[index]}})
+  }
+
+  renderMessages = () => {
+    const { messages, collabId } = this.props
+    const { activeMessage } = this.state
+
+    return messages.map((message, index) =>{
+     const item = !isEmpty(message.items) ? message.items[0] : {}
+      return (
+      <MessageItem
+        key={`message_${index}`}
+        label={item.content}
+        id={message.id}
+        unread={!item.read && item.recipient === collabId}
+        active={message.id === activeMessage.id}
+        onSelect={this.onSelectHandler} />
+    )})
   }
 
   render() {
+    const {collabId} = this.props
+    const {activeMessage} = this.state
+
     return (
       <Container>
         <H2>Messagerie</H2>
@@ -28,17 +59,22 @@ class Messages extends Component {
           templateRDesktop='1fr'
           templateADesktop={`".Items .Chatbox"`}>
           <Block className='Items'>
-           <MessageItem unread active onSelect={this.onSelectHandler}/>
-           <MessageItem unread onSelect={this.onSelectHandler}/>
-           <MessageItem  onSelect={this.onSelectHandler}/>
+            {this.renderMessages()}
           </Block>
-          <Block className='Chatbox' bgColor='Orange'>
-            Chatbox
-          </Block>
+        <ChatBox messages={activeMessage.items} collabId={collabId} />
         </Grid>
       </Container>
     )
   }
 }
 
-export default Messages
+const mapDisptachToProps = (dispatch) => ({
+  fetchMessages: collabId => dispatch(fetchMessages(collabId))
+})
+
+const mapStateToProps = (state) => ({
+  collabId: get(state, 'connectionAs.currentPerformer._id', get(state, 'auth.collaborator._id')),
+  messages: get(state, 'messages.messages', [])
+})
+
+export default connect(mapStateToProps, mapDisptachToProps)(Messages)

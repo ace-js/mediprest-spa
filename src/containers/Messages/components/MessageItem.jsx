@@ -4,10 +4,11 @@ import { FlexContainer, Block } from './../../../components/UI/Layout'
 import { Text } from './../../../components/UI/Text'
 import ItemWrapper from './ItemWrapper'
 
-const MessageItem = ({ unread , active, onSelect}) => {
+const MessageItem = ({ unread , active, onSelect, label, id}) => {
+  const title = `Contact: ${id}`
   return (
-    <ItemWrapper className={active ? 'active' : ''} onClick={() => !active && onSelect(123)}>
-      <Text color='BlueMoon' weight='bold' lineHeight='0'>Contact : 98989</Text>
+    <ItemWrapper title={title} className={active ? 'active' : ''} onClick={() => !active && onSelect(id)}>
+      <Text color='BlueMoon' weight='bold' lineHeight='0'>{title.substring(0,20)}..</Text>
       <FlexContainer
         paddingHorizontal='xs'
         width='100%'
@@ -20,10 +21,14 @@ const MessageItem = ({ unread , active, onSelect}) => {
           bgColor={unread ? 'BlueHeaven' : 'Transparent'}
           marginRight='xs'
         />
-        <Text color='GreyWarm'>blablablablaa</Text>
+        <Text color='GreyWarm'>{label.substring(0,20)}</Text>
       </FlexContainer>
     </ItemWrapper>
   )
 }
 
+MessageItem.defaultProps = {
+  id: '',
+  label: ''
+}
 export default MessageItem

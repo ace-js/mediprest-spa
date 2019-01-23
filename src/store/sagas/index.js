@@ -16,7 +16,7 @@ import {
   editPtsBilling,
   fetchPtsSagaBilling
 } from './billing'
-import {fetchUnreadAmountSaga} from './messages'
+import {fetchUnreadAmountSaga, fetchMessagesSaga} from './messages'
 
 export function * watchAuth () {
   yield all([
@@ -72,6 +72,7 @@ export function * watchBilling () {
 
 export function * watchMessages () {
   yield all([
-    takeEvery(actions.MESSAGES_FETCH_UNREAD_AMOUNT_SAGA, fetchUnreadAmountSaga)
+    takeEvery(actions.MESSAGES_FETCH_UNREAD_AMOUNT_SAGA, fetchUnreadAmountSaga),
+    takeEvery(actions.MESSAGES_FETCH_MESSAGES_SAGA, fetchMessagesSaga)
   ])
 }
