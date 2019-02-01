@@ -6,7 +6,8 @@ const initialState = {
   unreadAmount: 0,
   direction: null,
   isUnread: null,
-  messages: []
+  messages: [],
+  activeMessage: {}
 }
 
 const messagesReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const messagesReducer = (state = initialState, action) => {
       break
     case actions.MESSAGES_FETCH_MESSAGES_SUCCESS:
      cloneState.messages = action.payload.data.messages
+    case actions.MESSAGES_SET_ACTIVE_MESSAGE:
+     cloneState.activeMessage = action.payload.message
+     if(action.payload.message){
+      cloneState.messages = cloneState.messages.map(item => item.id === action.payload.message.id ? action.payload.message : item)
+     }
     default:
       break
   }
