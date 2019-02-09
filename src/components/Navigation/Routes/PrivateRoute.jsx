@@ -13,7 +13,6 @@ const hasAccess = (acceptedRoles, roles, currentPerformer) => {
       findIndex(acceptedRoles, role => role === constants.ROLES.PERFORMER) !== -1 &&
       findIndex(roles, role => role === constants.ROLES.PERFORMER || role === constants.ROLES.DELEGATE) !== -1
     ) {
-      console.log('OK:', currentPerformer)
       return currentPerformer
     } else {
       return !isEmpty(intersection(acceptedRoles, roles))

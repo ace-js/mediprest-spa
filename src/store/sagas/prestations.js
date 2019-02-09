@@ -51,7 +51,7 @@ export function *  saveAdminUpdates (action) {
       isFavorite: presta.isFavorite,
       amount: presta.times
     }))
-    console.log('SAVE')
+
     yield axios.post(`/prestations/${action.payload.inami}/${action.payload.id}`, {prestations})
     yield put(saveUpdateAdminPrestSuccess())
   } catch (error) {

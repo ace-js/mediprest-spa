@@ -8,7 +8,6 @@ export function * initDelegationsSaga(action) {
         const delegatesResponse = yield axios.get(`/collaborators/${action.payload.inami}/delegates/${action.payload.id}`)
         yield put(initDelegationsSuccess({collaborators: collaboratorsResponse.data, delegates: delegatesResponse.data}))
     } catch (error) {
-        console.log('temp error ' , error)
     }
 }
 
