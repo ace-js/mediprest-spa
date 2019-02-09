@@ -182,7 +182,7 @@ const PtsFilterForm = ({
             dateEnd
           )}
         </FlexContainer>
-        <FlexContainer
+        {/* <FlexContainer
           width={'20%'}
           className={'responsive'}
           verticalAlign={'middle'}
@@ -190,7 +190,7 @@ const PtsFilterForm = ({
           <Button variant='contained' color='secondary' href={'pdf'}>
             Export PDF
           </Button>
-        </FlexContainer>
+        </FlexContainer> */}
       </FlexContainer>
     </Block>
   )

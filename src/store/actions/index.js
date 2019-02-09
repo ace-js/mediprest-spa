@@ -58,7 +58,16 @@ export {
   fetchPerformerPerstationsSuccess,
   fetchPerformerPrestations,
   fetchPerformerPrestationsFail,
-  fetchPerformerPrestationsStart
+  fetchPerformerPrestationsStart,
+  initAdmin,
+  initAdminFail,
+  initAdminSuccess,
+  updateAdminPrest,
+  resetAdminPrestStatus,
+  resetUpdateAdminPrest,
+  saveUpdateAdminPrest,
+  saveUpdateAdminPrestFailed,
+  saveUpdateAdminPrestSuccess
 } from './prestations'
 
 export {
@@ -82,4 +91,16 @@ export {
   fetchMessagesSuccess,
   setActiveMessage,
   updateActiveMessage
- } from './messages'
+} from './messages'
+
+export {
+  initDelegations,
+  initDelegationsSuccess,
+  cancelUpdates,
+  updateDelegates,
+  saveUpdates,
+  saveUpdatesFail,
+  saveUpdatesStart,
+  saveUpdatesSuccess,
+  resetStatusDelegations
+} from './delegations'

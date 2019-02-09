@@ -15,6 +15,7 @@ import PrivateRoute from './components/Navigation/Routes/PrivateRoute'
 import Validation from './containers/Validation/Validation'
 import Billing from './containers/Billing/Billing'
 import Messages from './containers/Messages/Messages'
+import Admin from './containers/Admin/Admin'
 import { authCheckState } from './store/actions'
 import './App.css'
 
@@ -105,7 +106,7 @@ class App extends Component {
             />
             <AdminRoute
               path='/administration'
-              component={Validation}
+              component={Admin}
               isAuth={isAuthenticated}
               isAdmin={isAdmin}
             />

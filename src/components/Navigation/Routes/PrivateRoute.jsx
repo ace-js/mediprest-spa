@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isEmpty, intersection } from 'lodash'
+import { isEmpty, intersection, findIndex } from 'lodash'
 import { constants } from './../../../shared'
 import { Route } from 'react-router-dom'
 import Home from './../../Home/Home'
@@ -10,9 +10,10 @@ const hasAccess = (acceptedRoles, roles, currentPerformer) => {
     return true
   } else {
     if (
-      acceptedRoles.indexOf(role => role === constants.ROLES.PERFORMER) !== -1 &&
-      roles.indexOf(role => role === constants.PERFORMER || role === constants.DELEGATE) !== -1
+      findIndex(acceptedRoles, role => role === constants.ROLES.PERFORMER) !== -1 &&
+      findIndex(roles, role => role === constants.ROLES.PERFORMER || role === constants.ROLES.DELEGATE) !== -1
     ) {
+      console.log('OK:', currentPerformer)
       return currentPerformer
     } else {
       return !isEmpty(intersection(acceptedRoles, roles))

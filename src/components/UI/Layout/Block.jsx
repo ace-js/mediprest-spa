@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { spacings, utility, colors as basedColors } from './../../../shared'
+import { AutoComplete } from 'material-ui';
 
 const { list: colors } = basedColors
 const { getValueForKey } = utility
@@ -18,11 +19,13 @@ const Block = styled.div.attrs({
   height: ${props => props.height};
   max-width: ${props => props.maxWidth};
   min-height: ${props => props.minHeight};
+  max-height: ${props => props.maxHeight};
   position: relative;
   text-align: ${props => props.center ? 'center' : props.right ? 'right' : 'left'};
   width: ${props => props.width};
   z-index: 1;
   margin: 0;
+  overflow-y: ${props => props.overflowY};
   ${props => getValueForKey('margin', spacings, props.margin)}
   ${props => getValueForKey('margin-bottom', spacings, props.marginBottom)}
   ${props => getValueForKey('margin-bottom', spacings, props.marginVertical)}
@@ -88,7 +91,9 @@ Block.defaultProps = {
   marginVertical: undefined,
   maxWidth: '100%',
   minHeight: '0',
+  maxHeight: 'auto',
   minWidth: '1px',
+  overflowY: 'auto',
   padding: 'zero',
   paddingBottom: undefined,
   paddingHorizontal: undefined,

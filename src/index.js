@@ -15,6 +15,7 @@ import prestationReducer from './store/reducers/prestations'
 import historicReducer from './store/reducers/historic'
 import billingReducer from './store/reducers/billing'
 import messagesReducer from './store/reducers/messages'
+import delegationsReducer from './store/reducers/delegations'
 import {
   watchAuth,
   watchConnectionAs,
@@ -22,7 +23,8 @@ import {
   watchPrestations,
   watchHistoric,
   watchBilling,
-  watchMessages
+  watchMessages,
+  watchDelegations
 } from './store/sagas'
 
 const rootReducer = combineReducers({
@@ -32,7 +34,8 @@ const rootReducer = combineReducers({
   connectionAs: connectionAsReducer,
   prestations: prestationReducer,
   historic: historicReducer,
-  messages: messagesReducer
+  messages: messagesReducer,
+  delegations: delegationsReducer
 })
 const sagaMiddleware = createSagaMiddleware()
 const composeEnhancers = process.env.NODE_ENV === 'development'
@@ -51,6 +54,7 @@ sagaMiddleware.run(watchPrestations)
 sagaMiddleware.run(watchHistoric)
 sagaMiddleware.run(watchBilling)
 sagaMiddleware.run(watchMessages)
+sagaMiddleware.run(watchDelegations)
 
 const app = (
   <Provider store={store}>

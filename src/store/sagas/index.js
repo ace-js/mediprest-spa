@@ -9,7 +9,7 @@ import {
 } from './auth'
 import { fetchPerformersSaga, setChoiceSaga } from './connectionAs'
 import { fetchPtsSaga, editMultipProps, editPts, createPts } from './validation'
-import { fetchPrestations, fetchPerformerPrestations } from './prestations'
+import { fetchPrestations, fetchPerformerPrestations, initAdminPrestations, saveAdminUpdates } from './prestations'
 import { fetchPtsHistoricSaga, editMultipPropsHistoric } from './historic'
 import {
   editMultipPropsBilling,
@@ -17,6 +17,7 @@ import {
   fetchPtsSagaBilling
 } from './billing'
 import {fetchUnreadAmountSaga, fetchMessagesSaga, updateActiveMessage} from './messages'
+import { initDelegationsSaga, saveUpdates } from './delegations';
 
 export function * watchAuth () {
   yield all([
@@ -58,7 +59,9 @@ export function * watchPrestations () {
     takeEvery(
       actions.PRESTATIONS_FETCH_PERFORMER_PRESTATIONS_SAGA,
       fetchPerformerPrestations
-    )
+    ),
+    takeEvery(actions.PRESTATIONS_INIT_ADMIN_SAGA, initAdminPrestations),
+    takeEvery(actions.PRESTATIONS_ADMIN_SAVE_UPDATE_SAGA, saveAdminUpdates)
   ])
 }
 
@@ -75,5 +78,12 @@ export function * watchMessages () {
     takeEvery(actions.MESSAGES_FETCH_UNREAD_AMOUNT_SAGA, fetchUnreadAmountSaga),
     takeEvery(actions.MESSAGES_FETCH_MESSAGES_SAGA, fetchMessagesSaga),
     takeEvery(actions.MESSAGES_UPDATE_ACTIVE_MESSAGE_SAGA, updateActiveMessage)
+  ])
+}
+
+export function * watchDelegations () {
+  yield all([
+    takeEvery(actions.DELEGATIONS_INIT_SAGA, initDelegationsSaga),
+    takeEvery(actions.DELEGATIONS_SAVE_UPDATE_SAGA, saveUpdates)
   ])
 }
